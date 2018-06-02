@@ -20,14 +20,8 @@ public class DataServiceImpl implements DataSetService {
 	private DataSetRepository repository;
 	
 	@Override
-	public Iterable<DataSet> findAll(String sortAttr) {
-		log.info(sortAttr);
-		if (sortAttr != null) {
-			return repository.findAll(new Sort(Sort.Direction.ASC, sortAttr));
-		} else {
-			return repository.findAll();
-		}
-			
+	public Iterable<DataSet> findAll() {
+		return repository.findAll();	
 	}
 	
 	@Override

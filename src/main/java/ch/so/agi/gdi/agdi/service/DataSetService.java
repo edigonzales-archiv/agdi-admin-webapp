@@ -5,7 +5,7 @@ import java.util.Optional;
 import ch.so.agi.gdi.agdi.model.gdi_knoten.DataSet;
 
 public interface DataSetService {
-	Iterable<DataSet> findAll(String sortAttr); 
+	Iterable<DataSet> findAll(); 
 	
 	Optional<DataSet> findOne(Long id);
 	

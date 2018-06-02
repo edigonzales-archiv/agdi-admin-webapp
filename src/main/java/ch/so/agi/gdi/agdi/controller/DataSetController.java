@@ -19,14 +19,9 @@ public class DataSetController {
 	private DataSetService dataSetService;
 
 	@GetMapping("/data_sets")
-	public ModelAndView listDataSets(@RequestParam(value = "sort", required = false) String sort) {
-		
-		log.info(sort);
-		
-		Iterable<DataSet> dataSets = dataSetService.findAll(sort);
-		
+	public ModelAndView listDataSets() {
 		ModelAndView mv = new ModelAndView("data_sets");
-		mv.addObject("dataSets", dataSets);
+		mv.addObject("dataSets", dataSetService.findAll());
 		
 		return mv;
 	}
