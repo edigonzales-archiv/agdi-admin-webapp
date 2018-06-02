@@ -5,6 +5,8 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import ch.so.agi.gdi.agdi.model.gdi_knoten.DataSet;
@@ -18,8 +20,14 @@ public class DataServiceImpl implements DataSetService {
 	private DataSetRepository repository;
 	
 	@Override
-	public Iterable<DataSet> findAll() {
-		return repository.findAll();
+	public Iterable<DataSet> findAll(String sortAttr) {
+		log.info(sortAttr);
+		if (sortAttr != null) {
+			return repository.findAll(new Sort(Sort.Direction.ASC, sortAttr));
+		} else {
+			return repository.findAll();
+		}
+			
 	}
 	
 	@Override
