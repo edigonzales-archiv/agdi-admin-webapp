@@ -1,4 +1,4 @@
-package ch.so.agi.gdi.agdi;
+package ch.so.agi.agdi.admin;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

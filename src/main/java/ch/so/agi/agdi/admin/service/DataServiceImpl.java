@@ -1,4 +1,4 @@
-package ch.so.agi.gdi.agdi.service;
+package ch.so.agi.agdi.admin.service;
 
 import java.util.Optional;
 
@@ -9,8 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import ch.so.agi.gdi.agdi.model.gdi_knoten.DataSet;
-import ch.so.agi.gdi.agdi.repository.DataSetRepository;
+import ch.so.agi.agdi.admin.model.gdi_knoten.DataSet;
+import ch.so.agi.agdi.admin.repository.DataSetRepository;
 
 @Service
 public class DataServiceImpl implements DataSetService {

@@ -1,4 +1,4 @@
-package ch.so.agi.gdi.agdi.model.gdi_knoten;
+package ch.so.agi.agdi.admin.model.gdi_knoten;
 
 import java.io.Serializable;
 
