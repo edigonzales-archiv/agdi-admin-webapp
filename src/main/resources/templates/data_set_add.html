@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>DataSet hinzufügen</title>
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/4.1.0/css/bootstrap.min.css}" />
+<script th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.1.0/js/bootstrap.min.js}"></script>
+
+</head>
+<body>
+    <div class="container">
+		<h1 class="mb-4">DataSet hinzufügen</h1>
+		
+		<form>
+			<div class="form-group row col-10 mx-auto">
+				<label for="dataSourceType" class="col-sm-3 col-form-label">Typ</label>
+				<div class="col-sm-7">
+					<select id="selectDataSourceType" class="custom-select">
+						<option selected>Datenbank</option>
+						<option value="1">Filebasiert</option>
+						<option value="2">WM(T)S</option>
+					</select>
+				</div>
+			</div>
+
+            <div class="form-group row col-10 mx-auto">
+                <label for="inputName" class="col-sm-3 col-form-label">Name</label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" id="inputName">
+                </div>
+            </div>
+            
+            <div class="form-group row col-10 mx-auto">
+                <label for="inputTitel" class="col-sm-3 col-form-label">Titel</label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" id="inputTitel">
+                </div>
+            </div>    
+            
+            <div class="form-group row col-10 mx-auto">
+                <label for="inputBeschreibung" class="col-sm-3 col-form-label">Beschreibung</label>
+                <div class="col-sm-7">
+                    <textarea class="form-control" rows="4" id="inputBeschreibung"></textarea>
+                </div>
+            </div>  
+            
+            <div class="form-group row col-10 mx-auto">
+                <label for="selectDataOwner" class="col-sm-3 col-form-label">Datenherr</label>
+                <div class="col-sm-7">
+                    <select id="selectDataOwner" class="custom-select">
+                        <option selected></option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group row col-10 mx-auto">
+                <label for="dataSourceType" class="col-sm-3 col-form-label">Datasource</label>
+                <div class="col-sm-7">
+                    <select id="selectDataSourceType" class="custom-select">
+                        <option selected></option>
+                        <option value="1">geodb_brw.verw.rootso.org/pub</option>
+                        <option value="2">192.168.50.6/pub</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group row col-10 mx-auto">
+                <label for="dataSourceEntity" class="col-sm-3 col-form-label">Datasource Entität</label>
+                <div class="col-sm-7">
+                    <select id="dataSourceEntity" class="custom-select">
+                        <option selected></option>
+                    </select>
+                </div>
+            </div>            
+             
+			<fieldset class="form-group">
+				<div class="row">
+					<legend class="col-form-label col-sm-2 pt-0">Radios</legend>
+					<div class="col-sm-10">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="gridRadios"
+								id="gridRadios1" value="option1" checked> <label
+								class="form-check-label" for="gridRadios1"> First radio
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="gridRadios"
+								id="gridRadios2" value="option2"> <label
+								class="form-check-label" for="gridRadios2"> Second radio
+							</label>
+						</div>
+						<div class="form-check disabled">
+							<input class="form-check-input" type="radio" name="gridRadios"
+								id="gridRadios3" value="option3" disabled> <label
+								class="form-check-label" for="gridRadios3"> Third
+								disabled radio </label>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			<div class="form-group row">
+				<div class="col-sm-2">Checkbox</div>
+				<div class="col-sm-10">
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" id="gridCheck1">
+						<label class="form-check-label" for="gridCheck1"> Example
+							checkbox </label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-sm-10">
+					<button type="submit" class="btn btn-outline-primary">Speichern</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="container mb-4"></div>
+</body>
+</html>

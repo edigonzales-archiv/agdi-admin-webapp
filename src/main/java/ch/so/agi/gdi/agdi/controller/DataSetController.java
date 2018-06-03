@@ -25,4 +25,13 @@ public class DataSetController {
 		
 		return mv;
 	}
+	
+	@GetMapping("/data_sets/new")
+	public ModelAndView addDataSet() {
+		ModelAndView mv = new ModelAndView("data_set_add");
+		mv.addObject("dataSets", dataSetService.findAll());
+		
+		return mv;
+	}
+
 }
