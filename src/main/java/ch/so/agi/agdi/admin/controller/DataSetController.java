@@ -34,4 +34,11 @@ public class DataSetController {
 		
 		return mv;
 	}
+	
+	@ResponseBody
+	@GetMapping("/data_sets/tables")
+	public void listDataSourceTables(@RequestParam(value = "data_source_id", required = true) int dataSourceId) {
+		log.info("*****");
+		log.info("fubar");
+	}
 }

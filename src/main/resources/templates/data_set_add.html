@@ -122,15 +122,17 @@
 	</div>
 	<div class="container mb-4"></div>
 	
-<script type="text/javascript">
+<script th:inline="javascript">
+var contextPath = /*[[@{/}]]*/ ''; 
 $(function() {
     $('#selectDataSource').change(function() {
         $.ajax({
-            url: '/ajax/state',
+            url: contextPath+'/data_sets/tables',
             dataType: 'json',
             type: 'GET',
             // This is query string i.e. country_id=123
-            data: {country_id : $('#country').val()},
+            //data: {country_id : $('#country').val()},
+            data: {data_source_id : "2"},
             success: function(data) {
                 $('#state').empty(); // clear the current elements in select box
                 for (row in data) {
@@ -138,7 +140,8 @@ $(function() {
                 }
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                alert(errorThrown);
+            	console.log(contextPath);
+                //alert(contextPath);
             }
         });
     });
