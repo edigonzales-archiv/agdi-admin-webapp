@@ -29,16 +29,16 @@ public class DataSetController {
 	
 	@GetMapping("/data_sets/new")
 	public ModelAndView addDataSet() {
-		ModelAndView mv = new ModelAndView("data_set_add");
+		ModelAndView mv = new ModelAndView("data_sets_add_new");
 		mv.addObject("dataSets", dataSetService.findAll());
 		
 		return mv;
 	}
 	
-	@ResponseBody
-	@GetMapping("/data_sets/tables")
-	public void listDataSourceTables(@RequestParam(value = "data_source_id", required = true) int dataSourceId) {
-		log.info("*****");
-		log.info("fubar");
-	}
+//	@ResponseBody
+//	@GetMapping("/data_sets/tables")
+//	public void listDataSourceTables(@RequestParam(value = "data_source_id", required = true) int dataSourceId) {
+//		log.info("*****");
+//		log.info("fubar");
+//	}
 }

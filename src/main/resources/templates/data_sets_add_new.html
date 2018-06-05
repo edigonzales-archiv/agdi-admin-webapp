@@ -132,14 +132,18 @@ $(function() {
             type: 'GET',
             // This is query string i.e. country_id=123
             //data: {country_id : $('#country').val()},
+            //data: {data_source_id : "2"},
             data: {data_source_id : "2"},
+            data: {dburl : "jdbc:postgresql://192.168.50.6/pub", dbusr : "ddluser", dbpwd : "ddluser"},
             success: function(data) {
-                $('#state').empty(); // clear the current elements in select box
+                $('#dataSourceEntity').empty(); // clear the current elements in select box
                 for (row in data) {
-                    $('#state').append($('<option></option>').attr('value', data[row].stateId).text(data[row].stateName));
+                	var dataSourceEntity = data[row].schemaName + "." +data[row].tableName;
+                    $('#dataSourceEntity').append($('<option></option>').attr('value', dataSourceEntity).text(dataSourceEntity));
                 }
             },
             error: function(jqXHR, textStatus, errorThrown) {
+                console.log("error");
             	console.log(contextPath);
                 //alert(contextPath);
             }
