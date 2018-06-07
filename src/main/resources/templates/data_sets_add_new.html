@@ -10,6 +10,11 @@
 	th:href="@{/webjars/bootstrap/4.1.0/css/bootstrap.min.css}" />
 <script th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/4.1.0/js/bootstrap.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>  
+
+<style>
+	.dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {background-color: #007bff;}
+</style>
 
 </head>
 <body>
@@ -72,12 +77,10 @@
             <div class="form-group row col-10 mx-auto">
                 <label for="dataSourceEntity" class="col-sm-3 col-form-label">Datasource Entität</label>
                 <div class="col-sm-7">
-                    <select id="dataSourceEntity" class="custom-select">
-                        <option selected></option>
-                    </select>
+                    <input type="text" name="dataSourceEntity" id="dataSourceEntity" class="form-control input-lg" autocomplete="off" />
                 </div>
-            </div>            
-             
+            </div>           
+               
 			<fieldset class="form-group">
 				<div class="row">
 					<legend class="col-form-label col-sm-2 pt-0">Radios</legend>
@@ -133,7 +136,6 @@ $(function() {
             // This is query string i.e. country_id=123
             //data: {country_id : $('#country').val()},
             //data: {data_source_id : "2"},
-            data: {data_source_id : "2"},
             data: {dburl : "jdbc:postgresql://192.168.50.6/pub", dbusr : "ddluser", dbpwd : "ddluser"},
             success: function(data) {
                 $('#dataSourceEntity').empty(); // clear the current elements in select box
@@ -151,5 +153,33 @@ $(function() {
     });
 });
 </script>
+
+<script>
+
+		$('#dataSourceEntity').typeahead({
+			source : function(query, response) {
+				$.ajax({
+		            url: contextPath+'/data_sets/tables',
+					method : 'GET',
+					data : {
+						dburl : "jdbc:postgresql://192.168.50.6/pub", dbusr : "ddluser", dbpwd : "ddluser", query : query
+					},
+					dataType : 'json',
+					success : function(data) {
+						response(data);
+					}
+				})
+			},
+			displayText: function(item) {
+		        return item.schemaName + "." + item.tableName;
+		    },
+		    afterSelect: function(item) {
+                console.log(item.tableName);
+            },
+		    items: 15
+		});
+
+
+</script> 
 </body>
 </html>

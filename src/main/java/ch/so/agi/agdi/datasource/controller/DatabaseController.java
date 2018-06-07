@@ -25,11 +25,12 @@ public class DatabaseController {
 	public List<PostgresDataSourceEntity> listDataSourceTables(@RequestParam(value = "dburl", required = true) String dbUrl,
 	//public void listDataSourceTables(@RequestParam(value = "dburl", required = true) String dbUrl,
 			@RequestParam(value = "dbusr", required = true) String dbUsr,
-			@RequestParam(value = "dbpwd", required = true) String dbPwd) {
+			@RequestParam(value = "dbpwd", required = true) String dbPwd,
+			@RequestParam(value = "query", required = true) String query) {
 		
 		JDBCPostgresDataSourceEntityDAO dao = new JDBCPostgresDataSourceEntityDAO();
 
-		return dao.select(dbUrl, dbUsr, dbPwd);		
+		return dao.findByQuery(dbUrl, dbUsr, dbPwd, query);		
 	}
 	
 	@ResponseBody

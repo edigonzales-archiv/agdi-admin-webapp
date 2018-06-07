@@ -5,5 +5,7 @@ import java.util.List;
 import ch.so.agi.agdi.datasource.entity.PostgresDataSourceEntity;
 
 public interface PostgresDataSourceEntityDAO {
-	public List<PostgresDataSourceEntity> select(String dbUrl, String dbUsr, String dbPwd);
+	public List<PostgresDataSourceEntity> findAll(String dbUrl, String dbUsr, String dbPwd);
+	
+	public List<PostgresDataSourceEntity> findByQuery(String dbUrl, String dbUsr, String dbPwd, String query);
 }
