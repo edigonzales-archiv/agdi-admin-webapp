@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+	<meta charset="UTF-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>AGDI</title>
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.1.0/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{css/bootstrap-table.min.css}"></link>
+    <link rel="stylesheet" th:href="@{css/custom.css}"></link>
+	<script th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.1.0/js/bootstrap.min.js}"></script>
+	<script th:src="@{js/bootstrap-table.min.js}"></script>
+</head>
+<body>
+    <div th:fragment="header">	        
+        <h1>Thymeleaf Fragments sample</h1>
+    </div>
+	    
+    <p>Go to the next page to see fragments in action</p>
+	    
+    <aside>
+		<div>This is a sidebar</div> 
+	</aside>
+	    
+	<div class="another">This is another sidebar</div>
+	    
+	<footer th:fragment="footer" class="footer">
+        <div class="container">
+            <span class="text-muted">Amt für Geoinformation Kanton Solothurn</span>
+	   </div>
+	</footer>
+</body>
+</html>

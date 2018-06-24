@@ -9,11 +9,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import ch.so.agi.agdi.admin.model.gdi_knoten.DataSet;
+import ch.so.agi.agdi.admin.model.DataSet;
 import ch.so.agi.agdi.admin.repository.DataSetRepository;
 
 @Service
-public class DataServiceImpl implements DataSetService {
+public class DataSetServiceImpl implements DataSetService {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired

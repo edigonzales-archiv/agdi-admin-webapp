@@ -2,7 +2,7 @@ package ch.so.agi.agdi.admin.service;
 
 import java.util.Optional;
 
-import ch.so.agi.agdi.admin.model.gdi_knoten.DataSet;
+import ch.so.agi.agdi.admin.model.DataSet;
 
 public interface DataSetService {
 	Iterable<DataSet> findAll(); 

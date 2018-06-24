@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import ch.so.agi.agdi.admin.model.gdi_knoten.DataSet;
+import ch.so.agi.agdi.admin.model.DataSet;
 import ch.so.agi.agdi.admin.service.DataSetService;
 
 @Controller

@@ -1,12 +1,17 @@
-package ch.so.agi.agdi.admin.model.gdi_knoten;
+package ch.so.agi.agdi.admin.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity(name = "data_set")
@@ -25,9 +30,6 @@ public class DataSet implements Serializable {
 	@Column(name = "description")
 	private String description;
 	
-	@Column(name = "gdi_oid_data_source")
-	private Long gdiOidDataSource;
-
 	@Column(name = "data_set_name")
 	private String dataSetName;
 
@@ -55,14 +57,6 @@ public class DataSet implements Serializable {
 		this.description = description;
 	}
 
-	public Long getGdiOidDataSource() {
-		return gdiOidDataSource;
-	}
-
-	public void setGdiOidDataSource(Long gdiOidDataSource) {
-		this.gdiOidDataSource = gdiOidDataSource;
-	}
-
 	public String getDataSetName() {
 		return dataSetName;
 	}
@@ -70,4 +64,15 @@ public class DataSet implements Serializable {
 	public void setDataSetName(String dataSetName) {
 		this.dataSetName = dataSetName;
 	}
+	
+	@ManyToOne
+	@JoinColumn(name = "gdi_oid_data_source")
+	private DataSource dataSource;
+
+	public DataSource getDataSource() {
+		return this.dataSource;
+	}
+	
+	@OneToMany(mappedBy = "dataSet")
+	private List<DataSetView> dataSetViews = new ArrayList<DataSetView>();
 }
