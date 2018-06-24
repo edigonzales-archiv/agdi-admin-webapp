@@ -13,6 +13,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity(name = "data_source")
 @Table(schema = "gdi_knoten")
@@ -20,7 +23,7 @@ public class DataSource implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public enum ConnectionType {
-        DATABASE, DIRECTORY;
+        DATABASE, DIRECTORY, WMS;
     }
 	
 	@Id
@@ -28,21 +31,25 @@ public class DataSource implements Serializable {
 	@Column(name = "gdi_oid")
 	private Long gdiOid;
 
-	@Column(name = "name")
+	@NotEmpty(message = "Mandatory field.")
+	@Column(name = "name", length = 500)
 	private String name;
 
-	@Column(name = "description")
+	@Column(name = "description", length = 10000)
 	private String description;
 
-	@Column(name = "connection")
+	@NotEmpty(message = "Mandatory field.")
+	@Column(name = "connection", length = 500)
 	private String connection;
 	
-	@Column(name = "auser")
+	@Column(name = "auser", length = 500)
 	private String user;
 	
-	@Column(name = "password")
+	@Column(name = "password", length = 500)
 	private String password;
 
+	// @NotEmpty does not work with enum types.
+	@NotNull(message = "Mandatory field.")
 	@Column(name = "connection_type")
     @Enumerated(EnumType.STRING)
 	private ConnectionType connectionType;

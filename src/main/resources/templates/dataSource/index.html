@@ -5,7 +5,8 @@
 <body>
     <div class="container">
           <h1 class="mb-4">DataSources</h1>
-            <a class="mb-4 btn btn-outline-success" role="button" th:href="@{/data_sets/new}">+ Neue DataSource</a>           
+            <a class="mb-4 btn btn-outline-success" role="button" th:href="@{/dataSource/create}">+ Neue DataSource</a>           
+            
             <input class="mb-2 form-control" id="dataSourceFilterInput" type="text"
                 placeholder="Filter..."> <br>
         
@@ -16,26 +17,35 @@
                     <tr>
                         <th scope="col" data-sortable="true">#</th>
                         <th scope="col" data-sortable="true" data-field="name">Name</th>
-                        <th scope="col">Bearbeiten</th>
-                        <th scope="col">Löschen</th>
+                        <th scope="col" data-sortable="true" data-field="description">Description</th>
+                        <th scope="col" data-sortable="true" data-field="connection_type">Connection Type</th>                       
+                        <th scope="col" data-sortable="true" data-field="connection">Connection</th>
+                        <th scope="col" data-sortable="true" data-field="user">User</th>
                     </tr>
                 </thead>
                 <tbody id="dataSourceTable">
                     <tr th:each="dataSource : ${dataSources}">
                         <td th:text="${dataSource.gdiOid}"></td>
-                        <td th:text="${dataSource.name}"></td>
-                        <td><a class="btn btn-outline-primary btn-sm" role="button"
-                            th:href="@{/data_sets/edit/{id}(id=${dataSource.gdiOid})}">Bearbeiten</a>
-                        </td>
-                        <td><a class="btn btn-outline-danger btn-sm" role="button"
-                            th:href="@{/data_sets/delete/{id}(id=${dataSource.gdiOid})}">Löschen</a>
-                        </td>
+                        <td><a th:href="@{/dataSource/edit/{id}(id=${dataSource.gdiOid})}" th:text="${dataSource.name}"></a></td>
+                        <td th:text="${dataSource.description}"></td>
+                        <td th:text="${dataSource.connectionType}"></td>
+                        <td th:text="${dataSource.connection}"></td>
+                        <td th:text="${dataSource.user}"></td>
                     </tr>
                 </tbody>
             </table>
     </div>
     <div class="container mb-4">
     </div>
-
     <footer th:replace="fragments/general.html :: footer"></footer>
+    <script>
+    $(document).ready(function(){
+      $("#dataSourceFilterInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#dataSourceTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+    </script>    
 </body>

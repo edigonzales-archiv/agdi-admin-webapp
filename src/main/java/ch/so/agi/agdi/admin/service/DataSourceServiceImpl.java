@@ -20,4 +20,9 @@ public class DataSourceServiceImpl implements DataSourceService {
 		return repository.findAll();
 	}
 
+	@Override
+	public DataSource save(DataSource dataSource) {
+		return repository.save(dataSource);
+	}
+
 }
