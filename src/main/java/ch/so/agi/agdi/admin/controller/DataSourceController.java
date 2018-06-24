@@ -1,5 +1,7 @@
 package ch.so.agi.agdi.admin.controller;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -71,10 +73,22 @@ public class DataSourceController {
 		log.info("*****************");
 		log.info(String.valueOf(id));
 
+		Optional<DataSource> dataSourceOptional = dataSourceService.findOne(Integer.toUnsignedLong(id));
+		
+		if(!dataSourceOptional.isPresent()) {
+			log.error("DataSource not found. id="+id);
+			return "redirect:/dataSource";
+		}
+		
+		DataSource dataSource = dataSourceOptional.get();
+		model.addAttribute("dataSource", dataSource);		
+		return "/dataSource/create";
+
+		// TODO: how to deal w/ passwords?
 		// wiederverwenden von create.html?
 		// update -> save only
 		// close -> exit w/o save
-		return "redirect:/dataSource";
+		//return "redirect:/dataSource";
 	}
 
 	// DELETE
