@@ -32,4 +32,8 @@ public class DataSourceServiceImpl implements DataSourceService {
 		return repository.findById(id);
 	}
 
+	@Override
+	public void delete(Long id) {
+		repository.deleteById(id);
+	}
 }

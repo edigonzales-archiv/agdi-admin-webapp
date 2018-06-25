@@ -10,4 +10,6 @@ public interface DataSourceService {
 	Optional<DataSource> findOne(Long id);
 	
 	DataSource save(DataSource dataSource);
+	
+	void delete(Long id);
 }

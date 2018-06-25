@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,7 +50,7 @@ public class DataSourceController {
 	}
 	
 	@RequestMapping(value= "/dataSource/create", method=RequestMethod.POST)
-	public String formSubmit(@Valid DataSource dataSource, BindingResult bindingResult, Model model) {
+	public String createFormSubmit(@Valid DataSource dataSource, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			return "/dataSource/create";
 		}
@@ -70,9 +71,6 @@ public class DataSourceController {
 	
 	@RequestMapping(value= "/dataSource/edit/{id}", method=RequestMethod.GET)
 	public String edit(@PathVariable("id") int id, Model model) {
-		log.info("*****************");
-		log.info(String.valueOf(id));
-
 		Optional<DataSource> dataSourceOptional = dataSourceService.findOne(Integer.toUnsignedLong(id));
 		
 		if(!dataSourceOptional.isPresent()) {
@@ -82,14 +80,40 @@ public class DataSourceController {
 		
 		DataSource dataSource = dataSourceOptional.get();
 		model.addAttribute("dataSource", dataSource);		
-		return "/dataSource/create";
+		return "/dataSource/edit";
+	}
+	
+	@RequestMapping(value= "/dataSource/edit/{id}", method=RequestMethod.POST)
+	public String editFormSubmit(@PathVariable("id") int id, @Valid DataSource dataSource, BindingResult bindingResult, Model model) {
+		Optional<DataSource> dataSourceOptional = dataSourceService.findOne(Integer.toUnsignedLong(id));
 
-		// TODO: how to deal w/ passwords?
-		// wiederverwenden von create.html?
-		// update -> save only
-		// close -> exit w/o save
-		//return "redirect:/dataSource";
+		if(!dataSourceOptional.isPresent()) {
+			log.error("DataSource not found. id="+id);
+			return "redirect:/dataSource";
+		}
+		
+		dataSourceService.save(dataSource);
+
+		return "redirect:/dataSource/edit/"+id;
 	}
 
+	@RequestMapping(value= "/dataSource/delete/{id}", method=RequestMethod.DELETE)
+	public String delete(@PathVariable("id") int id, @Valid DataSource dataSource, BindingResult bindingResult, Model model) {
+		Optional<DataSource> dataSourceOptional = dataSourceService.findOne(Integer.toUnsignedLong(id));
+
+		if(!dataSourceOptional.isPresent()) {
+			log.error("DataSource not found. id="+id);
+			return "redirect:/dataSource";
+		}
+		
+		dataSourceService.delete(Integer.toUnsignedLong(id));
+
+		return "redirect:/dataSource";
+	}
+
+	
+
 	// DELETE
+	
+	// SHOW: eventuell.. add attribute to model to disable fields.
 }

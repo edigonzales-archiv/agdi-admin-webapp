@@ -17,8 +17,14 @@
     <div th:fragment="header">	        
         <h1>Thymeleaf Fragments sample</h1>
     </div>
-	    
-        <form th:fragment="datasource-form (submit_text)" th:action="@{/dataSource/create}" th:object="${dataSource}" method="POST">
+        <form th:fragment="datasource-form (controller_action, submit_button_text)" th:action="@{'/dataSource/'} + ${controller_action}" th:object="${dataSource}" method="POST">
+            <div class="form-group row col-10 mx-auto">
+                <label for="inputId" class="col-sm-3 col-form-label">Id</label>
+                <div class="col-sm-7"> 
+                    <input type="number" class="form-control" id="inputId" th:field="*{gdiOid}" readonly="readonly"/>
+                </div>
+            </div>
+            
             <div class="form-group row col-10 mx-auto">
                 <label for="inputName" class="col-sm-3 col-form-label">Name</label>
                 <div class="col-sm-7"> 
@@ -28,14 +34,14 @@
             </div>
             
             <div class="form-group row col-10 mx-auto">
-                <label for="inputBeschreibung" class="col-sm-3 col-form-label">Beschreibung</label>
+                <label for="inputBeschreibung" class="col-sm-3 col-form-label">Description</label>
                 <div class="col-sm-7">
                     <textarea class="form-control" rows="4" id="inputBeschreibung" th:field="*{description}"></textarea>
                 </div>
             </div>  
             
             <div class="form-group row col-10 mx-auto">
-                <label for="dataConnectionType" class="col-sm-3 col-form-label">Typ</label>
+                <label for="dataConnectionType" class="col-sm-3 col-form-label">Type</label>
                 <div class="col-sm-7">
                     <select id="selectConnectionType" class="custom-select" th:field="*{connectionType}">
                         <option selected value="DATABASE">DATABASE</option>
@@ -47,7 +53,7 @@
             </div>
 
             <div class="form-group row col-10 mx-auto">
-                <label for="inputConnection" class="col-sm-3 col-form-label">Verbindung</label>
+                <label for="inputConnection" class="col-sm-3 col-form-label">Connection</label>
                 <div class="col-sm-7">
                     <input type="text" class="form-control" id="inputConnection" th:field="*{connection}" th:classappend="${#fields.hasErrors('connection')} ? 'help-block' : ''">
                     <div th:if="${#fields.hasErrors('connection')}" class="help-block" th:errors="*{connection}"></div>
@@ -62,7 +68,7 @@
             </div>    
           
             <div class="form-group row col-10 mx-auto">
-                <label for="inputPassword" class="col-sm-3 col-form-label">Passwort</label>
+                <label for="inputPassword" class="col-sm-3 col-form-label">Password</label>
                 <div class="col-sm-7">
                     <input type="text" class="form-control" id="inputPassword" th:field="*{password}">
                 </div>
@@ -70,7 +76,7 @@
             
             <div class="form-group row">
                 <div class="col-sm-10">
-                    <button type="submit" class="btn btn-outline-primary" th:text="${submit_text}"></button>
+                    <button type="submit" class="btn btn-outline-primary" th:text="${submit_button_text}"></button>
                 </div>
             </div>
         </form>

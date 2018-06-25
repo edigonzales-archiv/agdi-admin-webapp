@@ -4,8 +4,8 @@
 <head th:replace="fragments/general.html :: head"> </head>
 <body>
     <div class="container">
-        <h1 class="mb-4">DataSource hinzufügen</h1>
-        <div th:insert="fragments/general :: datasource-form (submit_text='Erstellen')"></div>
+        <h1 class="mb-4">Create DataSource</h1>
+        <div th:insert="fragments/general :: datasource-form (controller_action='create', submit_button_text='Create')"></div>
     </div>
     <div class="container mb-4"></div>
 

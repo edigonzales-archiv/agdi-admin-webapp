@@ -32,7 +32,7 @@ public class DataSource implements Serializable {
 	private Long gdiOid;
 
 	@NotEmpty(message = "Mandatory field.")
-	@Column(name = "name", length = 500)
+	@Column(name = "name", unique=true, length = 500)
 	private String name;
 
 	@Column(name = "description", length = 10000)

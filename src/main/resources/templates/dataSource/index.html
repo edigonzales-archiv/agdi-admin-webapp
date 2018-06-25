@@ -5,7 +5,7 @@
 <body>
     <div class="container">
           <h1 class="mb-4">DataSources</h1>
-            <a class="mb-4 btn btn-outline-success" role="button" th:href="@{/dataSource/create}">+ Neue DataSource</a>           
+            <a class="mb-4 btn btn-outline-success" role="button" th:href="@{/dataSource/create}">+ Create DataSource</a>           
             
             <input class="mb-2 form-control" id="dataSourceFilterInput" type="text"
                 placeholder="Filter..."> <br>
@@ -21,6 +21,7 @@
                         <th scope="col" data-sortable="true" data-field="connection_type">Connection Type</th>                       
                         <th scope="col" data-sortable="true" data-field="connection">Connection</th>
                         <th scope="col" data-sortable="true" data-field="user">User</th>
+                        <th scope="col" data-sortable="false"></th>
                     </tr>
                 </thead>
                 <tbody id="dataSourceTable">
@@ -31,10 +32,20 @@
                         <td th:text="${dataSource.connectionType}"></td>
                         <td th:text="${dataSource.connection}"></td>
                         <td th:text="${dataSource.user}"></td>
+                        <td>
+                            <!--<a class="btn btn-outline-danger btn-sm" role="button" th:href="@{/dataSource/delete/{id}(id=${dataSource.gdiOid})}">Delete</a>  --> 
+                            <form action="#" th:action="@{/dataSource/delete/{id}(id=${dataSource.gdiOid})}" th:method="delete" >
+                                <input type="hidden" name="_method" value="delete" />
+                                <button type="submit" class="btn btn-outline-danger btn-sm" id="deleteSubmitButtion" th:text="Delete"></button>
+                            </form>  
+                        </td>
                     </tr>
                 </tbody>
             </table>
     </div>
+    
+
+
     <div class="container mb-4">
     </div>
     <footer th:replace="fragments/general.html :: footer"></footer>
